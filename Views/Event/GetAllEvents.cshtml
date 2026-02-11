@@ -1,0 +1,60 @@
+﻿@model List<MVC_Event.Models.Event>
+
+<h1>All Events</h1>
+
+<div class="container mt-4">
+    <table class="table table-hover table-striped text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Event ID</th>
+                <th>Title</th>
+                <th>Details</th>
+                <th>Edit</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody class="table-light text-dark">
+         
+            @foreach (var Event in Model)
+            {
+                <tr>
+                    <td>@Event.Id</td>
+                    <td>@Event.Title</td>
+                    <td>
+                        <a asp-action="Details"
+                           asp-route-eventId="@Event.Id"
+                           asp-controller="Event"
+                           class="btn btn-primary detailBtns">
+                            @Event.Title Details
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="EditEvent"
+                           asp-route-id="@Event.Id"
+                           asp-controller="Event"
+                           class="btn btn-sm btn-warning">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="Remove"
+                           asp-route-id="@Event.Id"
+                           asp-controller="Event"
+                           class="btn btn-sm btn-danger">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="5">
+                    <a asp-action="NewEvent"
+                       asp-controller="Event"
+                       class="btn btn-sm btn-info w-100">
+                        New Event
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

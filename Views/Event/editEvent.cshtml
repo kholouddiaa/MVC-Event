@@ -1,0 +1,46 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<h1>Edit Event</h1>
+
+<div class="container mt-4">
+    <form asp-action="SaveEdit" asp-controller="Event" method="post">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="Id" />
+
+        <table class="table table-hover table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Organizer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-light text-dark">
+                <tr>
+                    <td>
+                        <input asp-for="Title" class="form-control" placeholder="Title" />
+                    </td>
+                    <td>
+                        <input asp-for="Description" class="form-control" placeholder="Description" />
+                    </td>
+                    <td>
+                        <input asp-for="Date" type="datetime-local" class="form-control" />
+                    </td>
+                    <td>
+                        <input asp-for="OrganizerName" class="form-control" placeholder="Organizer Name" />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-warning">Save Edit</button>
+                        <a asp-action="Index" asp-controller="Event" class="btn btn-secondary">Back</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

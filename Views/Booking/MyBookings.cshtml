@@ -1,0 +1,55 @@
+﻿@model List<MVC_Event.ViewModel.EventVM>
+
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<h1 class="mb-4 text-center text-dark">My Bookings</h1>
+
+<div class="container mt-4">
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-hover table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Organizer</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody class="table-light text-dark">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.Date.ToShortDateString()</td>
+                        <td>@item.OrganizerName</td>
+                        <td>
+                            @if (item.UserHasBooked)
+                            {
+                                <span class="badge bg-success">Booked</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Not Booked</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center fw-bold">
+            You don’t have any bookings yet.
+        </div>
+    }
+
+    <div class="text-center mt-3">
+        <a class="btn btn-secondary" asp-action="Index" asp-controller="Event">Back</a>
+    </div>
+</div>

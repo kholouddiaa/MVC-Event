@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVC_Event.Models;   // مهم عشان EventDBContext
-
+using MVC_Event.Models;  
 namespace MVC_Event
 {
     public class Program
@@ -9,7 +8,7 @@ namespace MVC_Event
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // ✅ إضافة DbContext وربطه بالـ Connection String
+           
             builder.Services.AddDbContext<EventDBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
